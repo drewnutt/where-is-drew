@@ -27,14 +27,107 @@
       width: 100%;
       height: 60vh;  /* height relative to viewport for responsiveness */
     }
+    
+    /* Image viewer styles */
+    .image-viewer-box {
+      border: 2px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #f9f9f9;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .image-viewer-box h2 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 5px;
+      background-color: #000;
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    
+    .timeline-controls {
+      margin-top: 15px;
+    }
+    
+    .timeline-slider {
+      width: 100%;
+      margin: 10px 0;
+    }
+    
+    .image-info {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .control-buttons {
+      text-align: center;
+      margin: 10px 0;
+    }
+    
+    .control-buttons button {
+      margin: 0 5px;
+      padding: 5px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    
+    .control-buttons button:hover {
+      background-color: #0056b3;
+    }
+    
+    .control-buttons button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
   <div id="header-placeholder"></div>
   <script src="include.js"></script>
 
+  <!-- Image Viewer Section -->
+  <div class="image-viewer-box">
+    <h2>Trail Photos Timeline</h2>
+    <div class="image-container">
+      <img id="timeline-image" src="" alt="Trail photo" style="display: none;">
+    </div>
+    <div class="timeline-controls">
+      <div class="control-buttons">
+        <button id="prev-btn" onclick="previousImage()">◀ Previous</button>
+        <button id="play-btn" onclick="togglePlayback()">▶ Play</button>
+        <button id="next-btn" onclick="nextImage()">Next ▶</button>
+      </div>
+      <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="100" value="0" oninput="onSliderChange(this.value)">
+    </div>
+  </div>
+  
+  <script src="image-timeline.js"></script>
+
   <div id="plots-container"></div>
   <script src="data-plots.js"></script>
+  
 </body>
 </html>
 
